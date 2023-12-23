@@ -1,0 +1,32 @@
+About 01: Given the following CFG and the Predictive Parsing table. A program to trace input strings 
+(1) (i+i)*i$  ,(2) i*(i-i)$   , (3) i(i+i)$ . Shows the content of the stack after each match.
+Before               After
+E --> E+T;           Q --> +TQ
+E--> E- T;           Q--> -TQ;  Q--> Lamda 
+E--> T;              E--> TQ;
+T-->T*F;             R--> *FR;
+T-->T/F;             R--> /FR;  R--> Lamda 
+T-->F;               T--> FR;  
+F-->i;               F--> i
+F—>( E )             F—> ( E )
+Table:
+states	    i	    +	    -	    *	    /	    (	    )	    $
+E	        TQ					                    TQ		
+Q		            +TQ	    -TQ				                λ	     λ
+T	        FR					                    FR		
+R		            λ	    λ	    *FR	    /FR		        λ	    λ
+F	        i					                    ( E )		
+
+About 02: Given the following CFG and the Predictive Parsing table. A program to trace input strings 
+(1) a=(a + a )*a$  , (2) a=a*(a-a)$  ,  (3) a=(a+a)a$ . Shows the content of the stack after each match.
+Before              After
+S-->aW              S-->aW       
+W--> = E            W--> = E    
+E--> E+T            Q--> +TQ
+E--> E-T            Q--> -TQ    Q--> Lamda
+E--> T              E--> TQ
+T--> T*F            R--> *FR
+T -->T/F            R -->/FR    R--> Lamda
+T-->F               T-->FR
+F-->a               F-->a 
+F--> ( E )          F--> ( E )
